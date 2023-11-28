@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
@@ -23,6 +24,14 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        #assignmentPopup img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100px;
+            height: auto;
         }
     </style>
 </head>
@@ -45,42 +54,43 @@
         <p id="assignmentText"></p>
         <button onclick="closePopup('assignmentPopup')">Stäng</button>
     </div>
-    <!DOCTYPE html>
-<html lang="sv">
-<head>
-    <!-- Övriga head-element -->
-</head>
-<body>
-    <!-- Övriga body-element -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js"></script>
     <script>
         const participants = ['Cindra', 'Kim', 'Zina', 'Lisbeth', 'Peter', 'Classe', 'Elsa', 'Barry', 'Kristina'];
-        let assignments = {};
 
         function startGame() {
             const seed = document.getElementById('seedInput').value;
-            assignments = assignGifts(seed);
-            displayButtons();
+            const assignments = assignGifts(seed);
+            displayButtons(assignments);
         }
 
         function assignGifts(seed) {
             const pseudoRandom = new Math.seedrandom(seed);
-            let shuffled = participants.slice();
-            let recipients = participants.slice();
+            let participantsShuffled = shuffleArray(participants.slice(), pseudoRandom);
             let assignment = {};
 
-            shuffled.forEach(name => {
-                let recipientIndex;
-                do {
-                    recipientIndex = Math.floor(pseudoRandom() * recipients.length);
-                } while (recipients[recipientIndex] === name);
-                assignment[name] = recipients.splice(recipientIndex, 1)[0];
-            });
-
+            for (let i = 0; i < participantsShuffled.length; i++) {
+                let giver = participantsShuffled[i];
+                let receiver = participantsShuffled[(i + 1) % participantsShuffled.length];
+                if (giver === receiver) {
+                    [assignment[giver], assignment[participantsShuffled[0]]] = [assignment[participantsShuffled[0]], giver];
+                } else {
+                    assignment[giver] = receiver;
+                }
+            }
             return assignment;
         }
 
-        function displayButtons() {
+        function shuffleArray(array, pseudoRandom) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(pseudoRandom() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function displayButtons(assignments) {
             const namesDiv = document.getElementById('names');
             namesDiv.innerHTML = '';
             participants.forEach(name => {
@@ -100,7 +110,7 @@
 
         function showAssignment(name, assignee) {
             const assignmentText = document.getElementById('assignmentText');
-            assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='https://github.com/kimastor/kimastor.github.io/blob/main/DALL%C2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer,%20similar%20to%20the%20first%20and%20third%20images,%20depicting%20a%20gnome%20with%20a%20th.png?raw=true' alt='Presentlåda' style='width:100px; height:auto;'>`;
+            assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='https://github.com/kimastor/kimastor.github.io/blob/main/DALL%C2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer,%20similar%20to%20the%20first%20and%20third%20images,%20depicting%20a%20gnome%20with%20a%20th.png?raw=true' alt='Presentlåda' style='width:100px; height:auto;'>";
             closePopup('confirmPopup');
             document.getElementById('assignmentPopup').style.display = 'block';
         }
@@ -109,11 +119,5 @@
             document.getElementById(popupId).style.display = 'none';
         }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js"></script>
-
-</body>
-</html>
-
-
 </body>
 </html>
