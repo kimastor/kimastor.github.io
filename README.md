@@ -7,12 +7,31 @@
     <title>Julklappsleken</title>
     <style>
         body {
-            background-color: lightgrey;
+            background-color: lightgrey; /* Consistent background color */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff; /* Optional: different background for the content area */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 50px auto; /* Centers the container */
         }
         button {
             background-color: darkred;
             color: white;
             margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #a83232;
         }
         .popup {
             display: none;
@@ -25,6 +44,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            z-index: 1000; /* Ensures popup is above all other content */
         }
         #assignmentPopup img {
             display: block;
@@ -36,19 +56,14 @@
     </style>
 </head>
 <body>
-    <main class="container">
-        <div class="grid">
-            <section>
-                <hgroup>
-                    <h2>Välkommen till Julklappsleken!</h2>
-                    <h3>Ange kod 24 för att starta spelet</h3>
-                </hgroup>
-                <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
-                <button id="startGameButton">Starta spelet</button>
-                <div id="names" style="display:none;"></div>
-            </section>
-        </div>
-    </main>
+    <div class="container">
+        <h2>Välkommen till Julklappsleken!</h2>
+        <h3>Ange kod 24 för att starta spelet</h3>
+        <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
+        <button id="startGameButton">Starta spelet</button>
+        <div id="names" style="display:none;"></div>
+    </div>
+
     <div id="confirmPopup" class="popup"></div>
     <div id="assignmentPopup" class="popup">
         <p id="assignmentText"></p>
