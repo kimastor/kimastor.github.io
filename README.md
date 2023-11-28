@@ -91,10 +91,10 @@
     }
 
     function showAssignment(name, assignee) {
-        const assignmentText = document.getElementById('assignmentText');
-        assignmentText.innerText = `${name}, du ska köpa en julklapp till ${assignee}!`;
-        closePopup('confirmPopup');
-        document.getElementById('assignmentPopup').style.display = 'block';
+    const assignmentText = document.getElementById('assignmentText');
+    assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='PATH_TO_YOUR_IMAGE' alt='Presentlåda' style='width:100px; height:auto;'>`;
+    closePopup('confirmPopup');
+    document.getElementById('assignmentPopup').style.display = 'block';
     }
 
     function closePopup(popupId) {
