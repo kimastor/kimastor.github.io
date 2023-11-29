@@ -51,6 +51,7 @@
 </head>
 <body>
     <main class="container">
+        <!-- Sidans innehåll -->
         <div class="grid">
             <section>
                 <hgroup>
@@ -58,11 +59,10 @@
                     <h3>Ange kod 24 för att starta spelet</h3>
                 </hgroup>
                
-                <div id="gameNumber">Spelnummer: 0</div>
+                <div id="gameNumber">Nuvarande spelnummer: 0</div>
                 
                 <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
                 <button id="startGameButton">Starta nytt spel</button>
-                <button id="resetGameButton" onclick="resetGame()">Återställ spel</button>
                 <div id="names" style="display:none;"></div>
             </section>
         </div>
@@ -84,28 +84,16 @@
         }
     });
 
-let currentGameNumber = 0;
+        let currentGameNumber = 0;
 
-function startGame() {
-    const seed = document.getElementById('seedInput').value;
-    const assignments = assignGifts(seed);
-    displayButtons(assignments);
+        function startGame() {
+            const seed = document.getElementById('seedInput').value;
+            const assignments = assignGifts(seed);
+            displayButtons(assignments);
 
-    currentGameNumber = parseInt(seed, 10);
-    document.getElementById('gameNumber').innerText = `Spelnummer: ${currentGameNumber}`;
-
-    document.getElementById('startGameButton').classList.add('button-disabled');
-}
-
-function resetGame() {
-    // Rensa deltagarnamn, återställ spelnumret, etc.
-    document.getElementById('names').innerHTML = '';
-    document.getElementById('gameNumber').innerText = 'Spelnummer: 0';
-    currentGameNumber = 0;
-
-    // Aktivera "Starta nytt spel"-knappen igen
-    document.getElementById('startGameButton').classList.remove('button-disabled');
-}
+            currentGameNumber = parseInt(seed, 10);
+            document.getElementById('gameNumber').innerText = `Spelnummer: ${currentGameNumber}`;
+        }
         
 function assignGifts(seed) {
     console.log('assignGifts function called with seed:', seed);
@@ -152,13 +140,14 @@ function shuffleArray(array, pseudoRandom) {
             confirmPopup.style.display = 'block';
         }
 
-        function showAssignment(name, assignee) {
-            const assignmentText = document.getElementById('assignmentText');
-            const imageUrl = 'https://raw.githubusercontent.com/kimastor/kimastor.github.io/main/DALL%C2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer%2C%20similar%20to%20the%20first%20and%20third%20images%2C%20depicting%20a%20gnome%20with%20a%20th.png';
-            assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='${imageUrl}' alt='Presentlåda' style='width:100px; height:auto;'>`;
-            closePopup('confirmPopup');
-            document.getElementById('assignmentPopup').style.display = 'block';
-        }
+function showAssignment(name, assignee) {
+    const assignmentText = document.getElementById('assignmentText');
+    const imageUrl = 'https://raw.githubusercontent.com/kimastor/kimastor.github.io/main/DALL%C2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer%2C%20similar%20to%20the%20first%20and%20third%20images%2C%20depicting%20a%20gnome%20with%20a%20th.png';
+    assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='${imageUrl}' alt='Presentlåda' style='width:100px; height:auto;'><br>Julklappen får kosta max 350 kr.`;
+    closePopup('confirmPopup');
+    document.getElementById('assignmentPopup').style.display = 'block';
+}
+
 
         function closePopup(popupId) {
             document.getElementById(popupId).style.display = 'none';
