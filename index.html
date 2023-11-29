@@ -14,6 +14,14 @@
             color: white;
             margin: 5px;
         }
+        
+        .button-disabled {
+            background-color: grey;
+            color: white;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
         .popup {
             display: none;
             position: fixed;
@@ -72,6 +80,15 @@
             displayButtons(assignments);
         }
 
+function startGame() {
+    const seed = document.getElementById('seedInput').value;
+    const assignments = assignGifts(seed);
+    displayButtons(assignments);
+
+    // Add this line to change the button's appearance
+    document.getElementById('startGameButton').classList.add('button-disabled');
+}
+        
 function assignGifts(seed) {
     console.log('assignGifts function called with seed:', seed);
     const pseudoRandom = new Math.seedrandom(seed);
