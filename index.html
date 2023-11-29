@@ -108,7 +108,7 @@
 
         function confirmSelection(name, assignee) {
             const confirmPopup = document.getElementById('confirmPopup');
-            confirmPopup.innerHTML = `<p>Är du säker på att du vill se vem ${name} ska köpa en julklapp till?</p><button onclick='showAssignment(\"${name}\", \"${assignee}\")'>Ja</button><button onclick='closePopup(\"confirmPopup\")'>Nej</button>`;
+            confirmPopup.innerHTML = `<p>Är du säker på att du vill se vem ${name} ska köpa en julklapp till?</p><button onclick='showAssignment("${name}", "${assignee}")'>Ja</button><button onclick='closePopup("confirmPopup")'>Nej</button>`;
             confirmPopup.style.display = 'block';
         }
 
