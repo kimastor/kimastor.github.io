@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +44,7 @@
                     <h3>Ange kod 24 för att starta spelet</h3>
                 </hgroup>
                 <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
-                <button onclick="startGame()">Starta spelet</button>
+                <button id="startGameButton">Starta spelet</button>
                 <div id="names" style="display:none;"></div>
             </section>
         </div>
@@ -57,6 +58,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js"></script>
     <script>
         const participants = ['Cindra', 'Kim', 'Zina', 'Lisbeth', 'Peter', 'Classe', 'Elsa', 'Barry', 'Kristina'];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('startGameButton').addEventListener('click', startGame);
+        });
 
         function startGame() {
             const seed = document.getElementById('seedInput').value;
