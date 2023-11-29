@@ -41,6 +41,20 @@
             width: 100px;
             height: auto;
         }
+     
+        #gameNumber {
+            text-align: right;
+            margin-right: 20px; /* Lägg till marginal om nödvändigt */
+        }
+
+        #costReminder {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
     </style>
 </head>
 <body>
@@ -51,6 +65,10 @@
                     <h2>Välkommen till Julklappsleken!</h2>
                     <h3>Ange kod 24 för att starta spelet</h3>
                 </hgroup>
+               
+                <div id="gameNumber">Spelnummer: 0</div>
+                <div id="costReminder">Maxkostnad för present: 350 kr</div>
+                
                 <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
                 <button id="startGameButton">Starta nytt spel</button>
                 <div id="names" style="display:none;"></div>
@@ -87,6 +105,16 @@ function startGame() {
 
     // Add this line to change the button's appearance
     document.getElementById('startGameButton').classList.add('button-disabled');
+}
+
+let currentGameNumber = 0;
+
+function startGame() {
+    currentGameNumber++;
+    document.getElementById('gameNumber').innerText = `Spelnummer: ${currentGameNumber}`;
+
+    // Resten av din startGame-funktionskod...
+    // ...
 }
         
 function assignGifts(seed) {
