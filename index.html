@@ -46,14 +46,6 @@
             text-align: right;
             margin-right: 20px; /* Lägg till marginal om nödvändigt */
         }
-
-        #costReminder {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
         
     </style>
 </head>
@@ -67,10 +59,10 @@
                 </hgroup>
                
                 <div id="gameNumber">Spelnummer: 0</div>
-                <div id="costReminder">Maxkostnad för present: 350 kr</div>
                 
                 <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
                 <button id="startGameButton">Starta nytt spel</button>
+                <button id="resetGameButton" onclick="resetGame()">Återställ spel</button>
                 <div id="names" style="display:none;"></div>
             </section>
         </div>
@@ -99,12 +91,20 @@ function startGame() {
     const assignments = assignGifts(seed);
     displayButtons(assignments);
 
-    // Uppdatera spelnumret baserat på seed-värdet
-    currentGameNumber = parseInt(seed, 10); // Antagande att seed är ett heltal
+    currentGameNumber = parseInt(seed, 10);
     document.getElementById('gameNumber').innerText = `Spelnummer: ${currentGameNumber}`;
 
-    // Ändra knappens utseende
     document.getElementById('startGameButton').classList.add('button-disabled');
+}
+
+function resetGame() {
+    // Rensa deltagarnamn, återställ spelnumret, etc.
+    document.getElementById('names').innerHTML = '';
+    document.getElementById('gameNumber').innerText = 'Spelnummer: 0';
+    currentGameNumber = 0;
+
+    // Aktivera "Starta nytt spel"-knappen igen
+    document.getElementById('startGameButton').classList.remove('button-disabled');
 }
         
 function assignGifts(seed) {
