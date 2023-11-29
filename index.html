@@ -57,13 +57,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js"></script>
     <script>
-        const participants = ['Cindra', 'Kim', 'Zina', 'Lisbeth', 'Peter', 'Classe', 'Elsa', 'Barry', 'Kristina'];
+    const participants = ['Cindra', 'Kim', 'Zina', 'Lisbeth', 'Peter', 'Classe', 'Elsa', 'Barry', 'Kristina'];
 
-        function startGame() {
-            const seed = document.getElementById('seedInput').value;
-            const assignments = assignGifts(seed);
-            displayButtons(assignments);
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('startGameButton').addEventListener('click', startGame);
+    });
+
+    function startGame() {
+        const seed = document.getElementById('seedInput').value;
+        const assignments = assignGifts(seed);
+        displayButtons(assignments);
+    }
 
         function assignGifts(seed) {
             const pseudoRandom = new Math.seedrandom(seed);
