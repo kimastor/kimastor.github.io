@@ -26,33 +26,12 @@
             displayButtons(assignments);
         }
 
-        function assignGifts(seed) {
-            const pseudoRandom = new Math.seedrandom(seed);
-            let participantsShuffled = shuffleArray(participants.slice(), pseudoRandom);
-            let assignment = {};
+        // ... existing JavaScript ...
 
-            for (let i = 0; i < participantsShuffled.length; i++) {
-                let giver = participantsShuffled[i];
-                let receiver = participantsShuffled[(i + 1) % participantsShuffled.length];
-                assignment[giver] = receiver;
-            }
-
-            // Check if anyone is assigned to themselves
-            for (let participant in assignment) {
-                if (participant === assignment[participant]) {
-                    // Find someone who isn't assigned to themselves and swap assignments
-                    for (let swap in assignment) {
-                        if (swap !== assignment[swap] && participant !== assignment[swap]) {
-                            let temp = assignment[participant];
-                            assignment[participant] = assignment[swap];
-                            assignment[swap] = temp;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return assignment;
+        function confirmSelection(name, assignee) {
+            const confirmPopup = document.getElementById('confirmPopup');
+            confirmPopup.innerHTML = `<p>Är du säker på att du vill se vem ${name} ska köpa en julklapp till?</p><button onclick='showAssignment("${name}", "${assignee}")'>Ja</button><button onclick='closePopup("confirmPopup")'>Nej</button>`;
+            confirmPopup.style.display = 'block';
         }
 
         // ... remaining JavaScript ...
