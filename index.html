@@ -22,6 +22,11 @@ body {
             margin: 5px;
         }
         
+        .button-grayed {
+            background-color: #ccc;
+            color: #333;
+        }
+        
         .button-disabled {
             background-color: grey;
             color: white;
@@ -70,6 +75,7 @@ body {
                 
                 <input type="number" id="seedInput" placeholder="Ange kod här" value="24">
                 <button id="startGameButton">Starta nytt spel</button>
+                <div id="whoAreYouText" style="display: none; margin-top: 20px;">Vem är du?</div>
                 <div id="names" style="display:none;"></div>
             </section>
         </div>
@@ -91,16 +97,22 @@ body {
         }
     });
 
-        let currentGameNumber = 0;
+let currentGameNumber = 0;
 
-        function startGame() {
-            const seed = document.getElementById('seedInput').value;
-            const assignments = assignGifts(seed);
-            displayButtons(assignments);
+function startGame() {
+    const seed = document.getElementById('seedInput').value;
+    const assignments = assignGifts(seed);
+    displayButtons(assignments);
 
-            currentGameNumber = parseInt(seed, 10);
-            document.getElementById('gameNumber').innerText = `Spelnummer: ${currentGameNumber}`;
-        }
+    currentGameNumber = parseInt(seed, 10);
+    document.getElementById('gameNumber').innerText = `Nuvarande spelnummer: ${currentGameNumber}`;
+
+    // Ändra knappens utseende till grått
+    document.getElementById('startGameButton').classList.add('button-grayed');
+
+    // Visa texten "Vem är du?"
+    document.getElementById('whoAreYouText').style.display = 'block';
+}
         
 function assignGifts(seed) {
     console.log('assignGifts function called with seed:', seed);
