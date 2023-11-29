@@ -73,10 +73,11 @@
         }
 
         function assignGifts(seed) {
+            console.log('assignGifts function called with seed:', seed);
             const pseudoRandom = new Math.seedrandom(seed);
             let participantsShuffled = shuffleArray(participants.slice(), pseudoRandom);
             let assignment = {};
-
+        
             for (let i = 0; i < participantsShuffled.length; i++) {
                 let giver = participantsShuffled[i];
                 let receiver = participantsShuffled[(i + 1) % participantsShuffled.length];
@@ -99,7 +100,7 @@
         }
 
         function displayButtons(assignments) {
-          console.log('assignGifts function called with seed:', seed);
+            console.log('displayButtons function called with assignments:', assignments);
             const namesDiv = document.getElementById('names');
             namesDiv.innerHTML = '';
             participants.forEach(name => {
