@@ -92,29 +92,19 @@
         }
     });
 
-        function startGame() {
-            const seed = document.getElementById('seedInput').value;
-            const assignments = assignGifts(seed);
-            displayButtons(assignments);
-        }
+let currentGameNumber = 0;
 
 function startGame() {
     const seed = document.getElementById('seedInput').value;
     const assignments = assignGifts(seed);
     displayButtons(assignments);
 
-    // Add this line to change the button's appearance
-    document.getElementById('startGameButton').classList.add('button-disabled');
-}
-
-let currentGameNumber = 0;
-
-function startGame() {
-    currentGameNumber++;
+    // Uppdatera spelnumret baserat på seed-värdet
+    currentGameNumber = parseInt(seed, 10); // Antagande att seed är ett heltal
     document.getElementById('gameNumber').innerText = `Spelnummer: ${currentGameNumber}`;
 
-    // Resten av din startGame-funktionskod...
-    // ...
+    // Ändra knappens utseende
+    document.getElementById('startGameButton').classList.add('button-disabled');
 }
         
 function assignGifts(seed) {
