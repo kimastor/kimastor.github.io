@@ -119,8 +119,8 @@ function shuffleArray(array, pseudoRandom) {
 
         function showAssignment(name, assignee) {
             const assignmentText = document.getElementById('assignmentText');
-            const imageUrl = encodeURI('https://github.com/kimastor/kimastor.github.io/blob/7f87e95d1c28fcdf4b42538a5670ca264cd6b396/DALL%C2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer%2C%20similar%20to%20the%20first%20and%20third%20images%2C%20depicting%20a%20gnome%20with%20a%20th.png');
-            assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='${https://github.com/kimastor/kimastor.github.io/blob/7f87e95d1c28fcdf4b42538a5670ca264cd6b396/DALL%C2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer%2C%20similar%20to%20the%20first%20and%20third%20images%2C%20depicting%20a%20gnome%20with%20a%20th.png}' alt='Presentlåda' style='width:100px; height:auto;'>`;
+            const imageUrl = 'https://raw.githubusercontent.com/kimastor/kimastor.github.io/7f87e95d1c28fcdf4b42538a5670ca264cd6b396/DALL%E2%B7E%202023-11-28%2020.15.55%20-%20An%20illustration%20in%20the%20style%20of%20early%2020th-century%20Swedish%20artists%20like%20John%20Bauer%2C%20similar%20to%20the%20first%20and%20third%20images%2C%20depicting%20a%20gnome%20with%20a%20th.png';
+            assignmentText.innerHTML = `${name}, du ska köpa en julklapp till ${assignee}! <br><img src='${imageUrl}' alt='Presentlåda' style='width:100px; height:auto;'>`;
             closePopup('confirmPopup');
             document.getElementById('assignmentPopup').style.display = 'block';
         }
