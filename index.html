@@ -66,11 +66,11 @@
         }
     });
 
-    function startGame() {
-        console.log('startGame function called');
-        const seed = document.getElementById('seedInput').value;
-        // ... rest of startGame function ...
-    }
+        function startGame() {
+            const seed = document.getElementById('seedInput').value;
+            const assignments = assignGifts(seed);
+            displayButtons(assignments);
+        }
 
         function assignGifts(seed) {
             const pseudoRandom = new Math.seedrandom(seed);
