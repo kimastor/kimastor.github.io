@@ -72,32 +72,31 @@
             displayButtons(assignments);
         }
 
-        function assignGifts(seed) {
-            console.log('assignGifts function called with seed:', seed);
-            const pseudoRandom = new Math.seedrandom(seed);
-            let participantsShuffled = shuffleArray(participants.slice(), pseudoRandom);
-            let assignment = {};
-        
-            for (let i = 0; i < participantsShuffled.length; i++) {
-                let giver = participantsShuffled[i];
-                let receiver = participantsShuffled[(i + 1) % participantsShuffled.length];
-                if (giver === receiver) {
-                    [assignment[giver], assignment[participantsShuffled[0]]] = [assignment[participantsShuffled[0]], giver];
-                } else {
-                    assignment[giver] = receiver;
-                }
-            }
-            return assignment;
-        }
+function assignGifts(seed) {
+    console.log('assignGifts function called with seed:', seed);
+    const pseudoRandom = new Math.seedrandom(seed);
+    let participantsShuffled = shuffleArray(participants.slice(), pseudoRandom);
+    let assignment = {};
 
-        function shuffleArray(array, pseudoRandom) {
-          console.log('assignGifts function called with seed:', seed);
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(pseudoRandom() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
+    for (let i = 0; i < participantsShuffled.length; i++) {
+        let giver = participantsShuffled[i];
+        let receiver = participantsShuffled[(i + 1) % participantsShuffled.length];
+        if (giver === receiver) {
+            [assignment[giver], assignment[participantsShuffled[0]]] = [assignment[participantsShuffled[0]], giver];
+        } else {
+            assignment[giver] = receiver;
         }
+    }
+    return assignment;
+}
+
+function shuffleArray(array, pseudoRandom) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(pseudoRandom() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
         function displayButtons(assignments) {
             console.log('displayButtons function called with assignments:', assignments);
