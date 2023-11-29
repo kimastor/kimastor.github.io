@@ -59,8 +59,11 @@
     <script>
         const participants = ['Cindra', 'Kim', 'Zina', 'Lisbeth', 'Peter', 'Classe', 'Elsa', 'Barry', 'Kristina'];
 
-        document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('startGameButton').addEventListener('click', startGame);
+    document.addEventListener('DOMContentLoaded', function() {
+        var startGameButton = document.getElementById('startGameButton');
+        if (startGameButton) {
+            startGameButton.addEventListener('click', startGame);
+        }
     });
 
     function startGame() {
